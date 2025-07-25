@@ -1,4 +1,5 @@
 # PyFuncMonitor
+[![Documentation](https://img.shields.io/badge/Documentation-8A2BE2)](https://vajram-dev.github.io/pyfuncmonitor-docs/)
 
 A Python decorator for comprehensive function monitoring with execution timing, memory usage tracking, CPU monitoring, input/output validation, and structured logging.
 
