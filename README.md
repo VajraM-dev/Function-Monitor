@@ -1,4 +1,4 @@
-# Function Monitor
+# PyFuncMonitor
 
 A Python decorator for comprehensive function monitoring with execution timing, memory usage tracking, CPU monitoring, input/output validation, and structured logging.
 
@@ -14,13 +14,13 @@ A Python decorator for comprehensive function monitoring with execution timing, 
 ## Installation
 
 ```bash
-pip install function-monitor
+pip install pyfuncmonitor
 ```
 
 ## Quick Start
 
 ```python
-from function_monitor import monitor_function
+from pyfuncmonitor import monitor_function
 
 @monitor_function()
 def add_numbers(a: int, b: int) -> int:
@@ -57,7 +57,7 @@ This will output a dictionary containing the function result, execution metrics,
 Configure the monitor globally for your application:
 
 ```python
-from function_monitor import configure_monitor
+from pyfuncmonitor import configure_monitor
 
 configure_monitor(
     log_to_file=True,
@@ -72,9 +72,9 @@ configure_monitor(
 You can also configure using environment variables:
 
 ```bash
-export FUNCTION_MONITOR_LOG_LEVEL=10  # DEBUG level
-export FUNCTION_MONITOR_LOG_TO_FILE=true
-export FUNCTION_MONITOR_LOG_FILE=./debug.log
+export PYFUNCMONITOR_LOG_LEVEL=10  # DEBUG level
+export PYFUNCMONITOR_LOG_TO_FILE=true
+export PYFUNCMONITOR_LOG_FILE=./debug.log
 ```
 
 ### Per-Function Configuration
@@ -98,7 +98,7 @@ def my_function(x: int) -> str:
 
 ```python
 from pydantic import BaseModel
-from function_monitor import monitor_function
+from pyfuncmonitor import monitor_function
 
 class User(BaseModel):
     name: str
@@ -124,7 +124,7 @@ result = create_user(user)
 ### Custom Monitor Instances
 
 ```python
-from function_monitor import FunctionMonitor
+from pyfuncmonitor import FunctionMonitor
 
 # Create custom monitor with specific settings
 production_monitor = FunctionMonitor(
@@ -192,7 +192,7 @@ print(result["cpu_usage"])     # CPU usage percentage
 
 - `log_level`: Logging level (default: INFO)
 - `log_to_file`: Enable file logging (default: False)
-- `log_file_path`: Path to log file (default: "./function_monitor.log")
+- `log_file_path`: Path to log file (default: "./pyfuncmonitor.log")
 - `log_file_max_size`: Maximum log file size in bytes (default: 10MB)
 - `log_file_backup_count`: Number of backup log files (default: 5)
 - `default_validate_input`: Default input validation setting (default: True)
@@ -252,7 +252,7 @@ def critical_function():
 # Production configuration example
 configure_monitor(
     log_to_file=True,
-    log_file_path="/var/log/myapp/function_monitor.log",
+    log_file_path="/var/log/myapp/pyfuncmonitor.log",
     log_level=20,  # INFO
     default_return_raw_result=True,
     default_validate_input=True,
@@ -297,7 +297,7 @@ else:
 Enable debug mode for detailed logging:
 
 ```python
-from function_monitor import configure_monitor
+from pyfuncmonitor import configure_monitor
 
 configure_monitor(
     log_level=10,  # DEBUG level
@@ -306,127 +306,11 @@ configure_monitor(
 )
 ```
 
-## API Reference
-
-### Decorators
-
-#### `monitor_function(**kwargs)`
-Main decorator for function monitoring.
-
-**Parameters:**
-- `validate_input` (bool): Enable input validation
-- `validate_output` (bool): Enable output validation  
-- `log_execution` (bool): Enable execution logging
-- `log_level` (str): Logging level
-- `return_raw_result` (bool): Return format preference
-- `enable_memory_monitoring` (bool): Enable memory tracking
-- `enable_cpu_monitoring` (bool): Enable CPU tracking
-
-#### `FunctionMonitor(**kwargs)`
-Class-based monitor for reusable configurations.
-
-### Configuration Functions
-
-#### `configure_monitor(**kwargs)`
-Configure global monitoring settings.
-
-#### `get_config() -> MonitorConfig`
-Get current global configuration.
-
-#### `set_config(config: MonitorConfig)`
-Set global configuration from MonitorConfig instance.
-
-### Models
-
-#### `ExecutionResult`
-- `result`: Function return value
-- `status`: "success" or "error"
-- `errors`: List of error messages (if any)
-- `execution_time`: Execution time in seconds
-- `memory_usage`: Memory usage statistics
-- `cpu_usage`: CPU usage percentage
-- `timestamp`: ISO timestamp
-- `function_name`: Function name
-
-#### `MemoryUsage`
-- `before`: Memory before execution (bytes)
-- `after`: Memory after execution (bytes)
-- `peak`: Peak memory usage (bytes)
-- `delta`: Memory difference (bytes)
-
-## Testing
-
-Run the test suite:
-
-```bash
-# Install development dependencies
-pip install -e ".[dev]"
-
-# Run tests
-pytest
-
-# Run with coverage
-pytest --cov=function_monitor
-
-# Run specific test file
-pytest tests/test_monitor.py
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite (`pytest`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/function-monitor.git
-cd function-monitor
-
-# Install in development mode
-pip install -e ".[dev]"
-
-# Install pre-commit hooks
-pre-commit install
-
-# Run tests
-pytest
-```
-
-## Changelog
-
-### v0.1.0 (Initial Release)
-- Basic function monitoring with execution timing
-- Memory and CPU usage tracking
-- Input/output validation with Pydantic
-- Structured logging with configurable output
-- Comprehensive error handling
-- Global and per-function configuration
-- Production-ready design
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/function-monitor/issues)
-- **Documentation**: [Read the Docs](https://function-monitor.readthedocs.io/)
-- **PyPI**: [PyPI Package](https://pypi.org/project/function-monitor/)
-
-## Acknowledgments
-
-- Built with [Pydantic](https://pydantic-docs.helpmanual.io/) for data validation
-- Uses [structlog](https://www.structlog.org/) for structured logging
-- System monitoring powered by [psutil](https://psutil.readthedocs.io/)
-
----
-
-**Note**: This package is designed for production use but always test thoroughly in your specific environment before deploying to production.
+- **Issues**: [GitHub Issues](https://github.com/VajraM-dev/pyfuncmonitor/issues)
+- **PyPI**: [PyPI Package](https://pypi.org/project/pyfuncmonitor/)

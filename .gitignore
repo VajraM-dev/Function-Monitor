@@ -8,3 +8,5 @@ wheels/
 .venv
 function_monitor.log
 .pytest_cache
+
+publish_notes.txt
